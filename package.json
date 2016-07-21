@@ -1,0 +1,29 @@
+{
+  "name": "babel-plugin-groundskeeper-willie",
+  "version": "1.0.0",
+  "description": "Groundskeeper-style babel plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register"
+  },
+  "keywords": [
+    "babel",
+    "babel-plugin",
+    "plugin",
+    "groundskeeper",
+    "js"
+  ],
+  "author": "Jacques Favreau (@betaorbust)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.1.1",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1"
+  }
+}
