@@ -4,7 +4,8 @@
   "description": "Groundskeeper-style babel plugin",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha --compilers js:babel-core/register",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [
     "babel",
