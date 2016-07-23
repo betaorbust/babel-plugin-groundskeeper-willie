@@ -1,22 +1,22 @@
 Groundskeeper Willie Babel Plugin
 ====================================
-[![Build Status](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie.svg?branch=master)](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie) [![Build Status](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)
+[![NPM Version](https://badge.fury.io/js/babel-plugin-groundskeeper-willie.svg)](https://badge.fury.io/js/babel-plugin-groundskeeper-willie)
+[![Build Status](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie.svg?branch=master)](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie)
+[![Dependency Status](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)
 
-This projects is is a babel (and therefor ES215+ compatible) rewrite of the very
-useful [Groundskeeper](https://github.com/Couto/groundskeeper) utility, and as
-we're taking inspiration from the idea, let's take inspiration from the
-description as well!
->This is a small utility to remove forgotten console and specific blocks of code from Javascript files.
+This project is a Babel plugin encompassing and expanding the functionality of the very useful [Groundskeeper](https://github.com/Couto/groundskeeper) utility. Remaking Groundskeeper's
+features as a Babel plugin gives ongoing support to ES2015+, while greatly reducing runtime
+for those already using Babel in their build process.
 
 This plugin will:
-- **Remove `console` statements (log, warn, etc.) so your production code doesn't junk up the
-console, but your development code can be as verbose as you wish**
+- **Remove `console` statements, so your production code doesn't junk up the console,
+but your development code can be as verbose as you wish**
   - You can disable (to keep the console statement) Groundskeeper Willie by adding a line disable directive, which
   makes it significantly more flexible compared to [babel-plugin-transform-remove-console](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-remove-console)
   ```javascript
   console.log(`I'll be preserved!`); // groundskeeper-willie-disable-line
   ```
-- **Remove code between comment `<pragmas>` so you can use your debug code in development, and strip it out in production**
+- **Remove code between comment `<pragmas>`, so you can use your debug code in development, but strip it out in production**
   - See bottom of this file for a longer discussion on what a pragma looks like.
 
 <p align="center">
