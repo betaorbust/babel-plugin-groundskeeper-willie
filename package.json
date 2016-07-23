@@ -1,26 +1,33 @@
 {
-  "name": "babel-plugin-groundskeeper-willie",
-  "version": "1.0.0",
-  "description": "Groundskeeper-style babel plugin to remove console calls and pragma contents.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha --compilers js:babel-core/register",
-    "test:watch": "npm run test -- --watch"
-  },
-  "keywords": [
-    "babel",
-    "babel-plugin",
-    "plugin",
-    "groundskeeper",
-    "js"
-  ],
-  "author": "Jacques Favreau (@betaorbust)",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-core": "6.11.4",
-    "babel-eslint": "6.1.2",
-    "babel-preset-es2015": "6.9.0",
-    "mocha": "2.5.3"
-  },
-  "dependencies": {}
+    "name": "babel-plugin-groundskeeper-willie",
+    "version": "1.0.0",
+    "description": "Groundskeeper-style babel plugin to remove console calls and pragma contents.",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --compilers js:babel-core/register",
+        "test:watch": "npm run test -- --watch"
+    },
+    "keywords": [
+        "babel",
+        "babel-plugin",
+        "plugin",
+        "groundskeeper",
+        "js"
+    ],
+    "author": "Jacques Favreau (@betaorbust)",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-core": "6.11.4",
+        "babel-eslint": "6.1.2",
+        "babel-preset-es2015": "6.9.0",
+        "mocha": "2.5.3"
+    },
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie"
+    },
+    "bugs": {
+        "url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie/issues"
+    }
 }
