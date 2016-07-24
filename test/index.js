@@ -1,8 +1,8 @@
+'use strict';
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 const transformFileSync = require('babel-core').transformFileSync;
-const plugin = require('../src');
 
 function trim(str) {
   return str.replace(/^\s+|\s+$/, '');
@@ -19,8 +19,6 @@ describe('The spiritual successor to groundskeeper. Removes console, debug, and 
       const expected = fs.readFileSync(
           path.join(fixtureDir, 'expected.js')
       ).toString();
-    //   console.log(actual);
-    //   console.log(expected);
       assert.equal(trim(actual), trim(expected));
     });
   });

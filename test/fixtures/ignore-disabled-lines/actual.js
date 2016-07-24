@@ -1,6 +1,7 @@
 let name = 'Fry';
 let otherName = 'Leela';
 let evenOtherName = 'Amy';
+debugger;
 (()=>{let foo = name; console.log(foo);})()
 (()=>{let foo = name; console.log(foo);})() // groundskeeper-willie-disable-line
 console.log(`Hi ${ name }`);
@@ -12,3 +13,4 @@ console.warn(`Hi ${ evenOtherName }`); // groundskeeper-disable-line
 console.error(`Hi ${ name }`);
 console.error(`Hi ${ otherName }`); // groundskeeper-willie-disable-line
 console.error(`Hi ${ evenOtherName }`); // groundskeeper-disable-line
+debugger; // groundskeeper-willie-disable-line
