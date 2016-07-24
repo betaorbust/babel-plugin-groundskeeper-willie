@@ -67,7 +67,7 @@ unused code.
 ## What's a pragma?
 For the purposes of our little plugin, pragmas are comments that have an opening
 tag, and a closing tag, with a provided name. The pragma may appear in either a line
-comment or a block comment.
+comment or a block comment, and look like HTML/XML-esq open and close tags.
 
 ```javascript
 //<thisIsAPragma>
@@ -75,3 +75,26 @@ const removed = code.that.will.be.removed();
 //</thisIsAPragma>
 return ['included', /* <other> */ 'excluded', /* </other> */ 'also included'];
 ```
+
+## Plugin Options
+The following are the available options with their default values.
+```
+{
+    plugins: [
+        [
+            "groundskeeper-willie",
+            {
+                removeConsole:      true,
+                removeDebugger:     true,
+                removePragma:      true
+            }
+        ]
+    ]
+}
+```
+#### `removeConsole`
+If you wish to leave in all console statements, set this to false.
+#### `removeDebugger`
+If you wish to leave in all debugger statements, set this to false.
+#### `removePragma`
+If you wish to leave in all pragmas-wrapped code, stet this to false.

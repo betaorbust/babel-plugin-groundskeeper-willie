@@ -7,11 +7,13 @@
 
 const helpers = require('./helpers'); // All the plugin helper functions.
 
-// Define how we detect line disable directives.
-const DISABLE_LINE_REGEX = /^\s*groundskeeper(-willie)?-disable-line\s*$/i;
-
-// Define how we detect pragmas.
-const PRAGMA_REGEX = /^\s?<(\/?)([\w\d\-]*)>\s*$/;
+const DEFAULTS = {
+    disableLineMatcher: /^\s*groundskeeper(-willie)?-disable-line\s*$/i, // Not currently possible  to set due to regex in JSON
+    pragmaMatcher: /^\s?<(\/?)([\w\d\-]*)>\s*$/, // Not currently possible to set due to regex in JSON
+    removeConsole: true,
+    removeDebugger: true,
+    removePragma: true
+};
 
 /**
  * The set of visitors this plugin will register.
@@ -21,21 +23,21 @@ const removeGroundskeeperElements = {
     // Unfortunately, because there is currently no way to say "Remove everything
     // between these lines" we have to check each element's position relative to
     // the pragma comments.
-    enter(path){
-        if(helpers.isInsidePragma(path.node, this.gkPragmas)){
+    enter(path, state){
+        if(state.removePragma && helpers.isInsidePragma(path.node, state.gkPragmas)){
             path.remove();
         }
     },
     // We're removing all console calls unless they're disabled via a line directive.
-    CallExpression(path) {
+    CallExpression(path, state) {
         const isConsole = path.get("callee").matchesPattern("console", true);
-        if(isConsole && !helpers.isOnDisabledLine(this.gkDisabledLines, path)){
+        if(isConsole && state.removeConsole && !helpers.isOnDisabledLine(state.gkDisabledLines, path)){
             path.remove();
         }
     },
     // We're removing all debugger calls unless they're disabled via a line directive.
-    DebuggerStatement(path) {
-        if(!helpers.isOnDisabledLine(this.gkDisabledLines, path)){
+    DebuggerStatement(path, state) {
+        if(state.removeDebugger && !helpers.isOnDisabledLine(state.gkDisabledLines, path)){
             path.remove();
         }
       }
@@ -51,13 +53,16 @@ const removeGroundskeeperElements = {
 module.exports = function(babel) {
     return {
         visitor: {
-            Program(path) {
-                const disabledLines = helpers.fetchDisabledLines(path.parent.comments, DISABLE_LINE_REGEX);
-                const pragmaRegions = helpers.fetchPragmas(path.parent.comments, PRAGMA_REGEX);
-                path.traverse(removeGroundskeeperElements, {
-                    gkDisabledLines: disabledLines,
-                    gkPragmas: pragmaRegions
-                });
+            Program(path, state) {
+                // If no options are missing, use our defaults.
+                state.opts = Object.assign({}, DEFAULTS, state.opts);
+                const comments = path.parent && path.parent.comments ? path.parent.comments : [];
+                const disabledLines = helpers.fetchDisabledLines(comments, state.opts.disableLineMatcher);
+                const pragmaRegions = state.opts.removePragma ? helpers.fetchPragmas(comments, state.opts.pragmaMatcher) : [];
+                path.traverse(removeGroundskeeperElements, Object.assign({
+                        gkDisabledLines: disabledLines,
+                        gkPragmas: pragmaRegions
+                }, state.opts));
             }
         }
     };

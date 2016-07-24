@@ -1,0 +1,4 @@
+{
+  "plugins": [
+      ["../../../src", { "removeConsole": false }]]
+}

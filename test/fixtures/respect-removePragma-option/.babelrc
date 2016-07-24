@@ -1,0 +1,4 @@
+{
+  "plugins": [
+      ["../../../src", { "removePragma": false }]]
+}
