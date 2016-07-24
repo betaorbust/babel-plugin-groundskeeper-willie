@@ -10,14 +10,56 @@ for those already using Babel in their build process.
 
 This plugin will:
 - **Remove `console` statements, so your production code doesn't junk up the console,
-but your development code can be as verbose as you wish**
-  - You can disable (to keep the console statement) Groundskeeper Willie by adding a line disable directive, which
-  makes it significantly more flexible compared to [babel-plugin-transform-remove-console](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-remove-console)
+but your development code can be as verbose as you wish.**
+  - To keep specific console statements, you can disable Groundskeeper Willie by adding
+  a line disable directive, which makes it significantly more flexible compared to [babel-plugin-transform-remove-console](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-remove-console)
+
+  Source:
+  ```javascript
+  console.log(`I'll be removed.`);
+  console.log(`I'll be preserved!`); // groundskeeper-willie-disable-line
+  ```
+  Result:
   ```javascript
   console.log(`I'll be preserved!`); // groundskeeper-willie-disable-line
   ```
-- **Remove code between comment `<pragmas>`, so you can use your debug code in development, but strip it out in production**
-  - See bottom of this file for a longer discussion on what a pragma looks like.
+- **Remove `debugger` statements, so you don't accidentally ship halting code.**
+  - Same as above, you can disable this in specific cases with a line disable directive.
+
+  Source:
+  ```javascript
+  () => {
+    debugger;
+    do.something();
+    debugger; // groundskeeper-willie-disable-line
+  }
+  ```
+  Result:
+  ```javascript
+  () => {
+    do.something();
+    debugger; // groundskeeper-willie-disable-line
+  }
+  ```
+- **Remove code between comment `<pragmas>`, so you can use your debug code in development, but strip it out in production.**
+
+  Source:
+  ```javascript
+  module.exports = {
+    prodFunction(){ /* ... */ },
+    // <testCode>
+    testFunction(){ /* ... */ },
+    //</testCode>
+    otherProdCode(){ /* ... */ }
+  };
+  ```
+  Result:
+  ```javascript
+  module.exports = {
+    prodFunction(){ /* ... */ },
+    otherProdCode(){ /* ... */ }
+  };
+  ```
 
 <p align="center">
   <img align="center" width="300px" src="https://cloud.githubusercontent.com/assets/921683/17076208/7eae721c-5061-11e6-8afd-3071b0de4f70.gif" />
@@ -78,15 +120,15 @@ return ['included', /* <other> */ 'excluded', /* </other> */ 'also included'];
 
 ## Plugin Options
 The following are the available options with their default values.
-```
+```json
 {
-    plugins: [
+    "plugins": [
         [
             "groundskeeper-willie",
             {
-                removeConsole:      true,
-                removeDebugger:     true,
-                removePragma:      true
+                "removeConsole":  true,
+                "removeDebugger": true,
+                "removePragma":   true
             }
         ]
     ]
