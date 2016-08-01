@@ -1,5 +1,5 @@
 ## Only publish the lib directory
 *
 **/*
-!lib/
+!lib/*
 !index.js
