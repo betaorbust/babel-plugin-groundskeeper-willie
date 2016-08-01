@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-groundskeeper-willie",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Groundskeeper-style babel plugin to remove console calls and pragma contents.",
   "main": "index.js",
   "scripts": {
