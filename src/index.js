@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const helpers = require('./helpers'); // All the plugin helper functions.
+const helpers = require('./helpers.js'); // All the plugin helper functions.
 
 const DEFAULTS = {
     disableLineMatcher: /^\s*groundskeeper(-willie)?-disable-line\s*$/i, // Not currently possible  to set due to regex in JSON
