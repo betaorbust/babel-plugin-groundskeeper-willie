@@ -2,7 +2,9 @@ Groundskeeper Willie Babel Plugin
 ====================================
 [![NPM Version](https://badge.fury.io/js/babel-plugin-groundskeeper-willie.svg)](https://badge.fury.io/js/babel-plugin-groundskeeper-willie)
 [![Build Status](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie.svg?branch=master)](https://travis-ci.org/betaorbust/babel-plugin-groundskeeper-willie)
-[![Dependency Status](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie.svg)
+[![Dependency Status](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie/status.svg)](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie/status.svg)
+[![Dev Dependency Status](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie/dev-status.svg)](https://david-dm.org/betaorbust/babel-plugin-groundskeeper-willie/dev-status.svg)
+
 
 This project is a Babel plugin encompassing and expanding the functionality of the very useful [Groundskeeper](https://github.com/Couto/groundskeeper) utility. Remaking Groundskeeper's
 features as a Babel plugin gives ongoing support to ES2015+, while greatly reducing runtime
