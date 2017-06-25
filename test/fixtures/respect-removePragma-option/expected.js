@@ -1,5 +1,5 @@
 function love(fry) {
     //<pragma>
-    return `${ fry } loves you!`;
+    return `${fry} loves you!`;
     //</pragma>
 }

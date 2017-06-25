@@ -55,7 +55,7 @@ module.exports = function(babel) {
         visitor: {
             Program(path, state) {
                 // If no options are missing, use our defaults.
-                state.opts = Object.assign({}, DEFAULTS, state.opts);
+                state.opts = Object.assign({}, DEFAULTS, state.opts, helpers.getPragmaMatcher(DEFAULTS, state.opts));
                 const comments = path.parent && path.parent.comments ? path.parent.comments : [];
                 const disabledLines = helpers.fetchDisabledLines(comments, state.opts.disableLineMatcher);
                 const pragmaRegions = state.opts.removePragma ? helpers.fetchPragmas(comments, state.opts.pragmaMatcher) : [];
