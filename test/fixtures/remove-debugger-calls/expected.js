@@ -1,5 +1,5 @@
 function like(brand) {
     let name = 'Fry';
 
-    return `${ name } likes ${ brand }`;
+    return `${name} likes ${brand}`;
 }
