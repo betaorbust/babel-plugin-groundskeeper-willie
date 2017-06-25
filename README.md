@@ -130,7 +130,8 @@ The following are the available options with their default values.
             {
                 "removeConsole":  true,
                 "removeDebugger": true,
-                "removePragma":   true
+                "removePragma":   true,
+                "pragmaMatcher":  "^\\s?<(\/?)([\\w\\d\\-]*)>\\s*$"
             }
         ]
     ]
@@ -142,3 +143,23 @@ If you wish to leave in all console statements, set this to false.
 If you wish to leave in all debugger statements, set this to false.
 #### `removePragma`
 If you wish to leave in all pragmas-wrapped code, stet this to false.
+#### `pragmaMatcher`
+May be a regexp string or string array.
+If it is a regexp string, it should have two capture groups: first determines closing pragma, second — pragma name.
+If it is a string array, it should contain names of pragmas, which will be removed.
+
+Remove only `debug` and `lol` pragmas:
+
+````json
+{
+    "pragmaMatcher": "^\\s?<(\\/?)(debug|lol)>\\s*$"
+}
+````
+
+Exactly the same as before, but as array:
+
+````json
+{
+    "pragmaMatcher": ["debug", "lol"]
+}
+````

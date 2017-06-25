@@ -115,11 +115,30 @@ const fetchDisabledLines = function(comments, disabledRegex){
      return false;
  };
 
+/**
+ * Get a valid pragma matcher.
+ * @param  {Object} defaults Default options.
+ * @param  {Object} opts     Actual options.
+ * @return {Object}          Pragma matcher options.
+ */
+const getPragmaMatcher = function(defaults, opts){
+    if (typeof opts.pragmaMatcher === 'string') {
+        return { pragmaMatcher: new RegExp(opts.pragmaMatcher) };
+    } else if (Object.prototype.toString.call(opts.pragmaMatcher) === '[object RegExp]') {
+        return { pragmaMatcher: opts.pragmaMatcher };
+    } else if (Array.isArray(opts.pragmaMatcher)) {
+        return { pragmaMatcher: new RegExp(String.raw`^\s?<(\/?)(${opts.pragmaMatcher.join('|')})>\s*$`) };
+    } else {
+        return { pragmaMatcher: defaults.pragmaMatcher };
+    }
+};
+
 
 module.exports = {
     fetchDisabledLines,
     fetchPragmas,
     isInsidePragma,
     isLineDisableComment,
-    isOnDisabledLine
+    isOnDisabledLine,
+    getPragmaMatcher
 };

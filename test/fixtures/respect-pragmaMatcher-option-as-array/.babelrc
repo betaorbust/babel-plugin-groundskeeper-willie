@@ -1,0 +1,4 @@
+{
+  "plugins": [
+      ["../../../src", { "pragmaMatcher": ["debug", "lol"] }]]
+}
