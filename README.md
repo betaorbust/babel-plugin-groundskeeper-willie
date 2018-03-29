@@ -69,7 +69,7 @@ but your development code can be as verbose as you wish.**
 
 Complete Example:
 -----------------
-####Input:
+#### Input:
 Here we have a file that has some development code, a console, etc.
 ```javascript
 module.exports = {
