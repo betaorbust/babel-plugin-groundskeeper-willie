@@ -1,0 +1,16 @@
+{
+	"useTabs": true,
+	"singleQuote": true,
+	"proseWrap": "always",
+	"htmlWhitespaceSensitivity": "css",
+	"vueIndentScriptAndStyle": true,
+	"trailingComma": "es5",
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"proseWrap": "preserve"
+			}
+		}
+	]
+}

@@ -8,6 +8,6 @@ module.exports = {
     //</inObjectPragma>
 };
 module.exports.someArrayValues = ['Nibbler does', /*<inlinePragma>*/'not',/*</inlinePragma>*/ 'eat kittens'];
-module.epxorts.someOtherThings = [ //<crossLinePragma>
+module.exports.someOtherThings = [ //<crossLinePragma>
     'If you read this, you\'ll get the clamps' //</crossLinePragma>
 ];

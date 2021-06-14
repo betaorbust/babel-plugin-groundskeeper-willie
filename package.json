@@ -1,36 +1,99 @@
 {
-  "name": "babel-plugin-groundskeeper-willie",
-  "version": "1.3.2",
-  "description": "Groundskeeper-style babel plugin to remove console calls and pragma contents.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha --compilers js:babel-core/register",
-    "test:watch": "npm run test -- --watch",
-    "prepublish": "gulp"
-  },
-  "keywords": [
-    "babel",
-    "babel-plugin",
-    "plugin",
-    "groundskeeper",
-    "js"
-  ],
-  "author": "Jacques Favreau (@betaorbust)",
-  "license": "ISC",
-  "devDependencies": {
-    "babel-core": "6.11.4",
-    "babel-eslint": "6.1.2",
-    "babel-preset-es2015": "6.9.0",
-    "gulp": "3.9.1",
-    "gulp-babel": "6.1.2",
-    "mocha": "3.0.1"
-  },
-  "dependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie"
-  },
-  "bugs": {
-    "url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie/issues"
-  }
+	"name": "babel-plugin-groundskeeper-willie",
+	"version": "1.3.2",
+	"description": "Groundskeeper-style babel plugin to remove console calls and pragma contents.",
+	"main": "index.js",
+	"scripts": {
+		"pretest": "tsc --noEmit",
+		"posttest": "npm run format",
+		"test:watch": "jest --watch",
+		"lint": "eslint ./",
+		"format": "prettier --loglevel warn --write \"**/*.{js,ts,jsx,tsx,mdx,vue,json,json5,yaml,md,html,less,sass,css,gql}\"",
+		"build": "tsc",
+		"dev": "tsc -w",
+		"test": "jest",
+		"test:coverage": "jest --coverage"
+	},
+	"keywords": [
+		"babel",
+		"babel-plugin",
+		"plugin",
+		"groundskeeper",
+		"js"
+	],
+	"author": "Jacques Favreau (@betaorbust)",
+	"license": "ISC",
+	"devDependencies": {
+		"@betaorbust/eslint-config": "0.0.6",
+		"@commitlint/cli": "^12.1.4",
+		"@commitlint/config-conventional": "^12.1.4",
+		"@types/jest": "^26.0.23",
+		"babel-core": "^6.26.3",
+		"babel-jest": "^27.0.2",
+		"eslint": "^7.28.0",
+		"husky": "^6.0.0",
+		"jest": "^27.0.4",
+		"lint-staged": "^11.0.0",
+		"prettier": "^2.3.1",
+		"ts-jest": "^27.0.3",
+		"typescript": "^4.3.2"
+	},
+	"dependencies": {
+		"@babel/traverse": "^7.14.5",
+		"@babel/types": "^7.14.5",
+		"tslib": "^2.2.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie"
+	},
+	"bugs": {
+		"url": "https://github.com/betaorbust/babel-plugin-groundskeeper-willie/issues"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": "eslint --fix",
+		"*.{js,ts,jsx,tsx,mdx,vue,json,json5,yaml,md,html,less,sass,css,gql}": "prettier --write"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"rules": {
+			"subject-case": [
+				2,
+				"always",
+				[
+					"sentence-case"
+				]
+			],
+			"subject-full-stop": [
+				2,
+				"always",
+				"."
+			]
+		}
+	},
+	"jest": {
+		"testPathIgnorePatterns": [
+			"/node_modules/",
+			"<rootDir>/dist/"
+		],
+		"transform": {
+			"^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json"
+		]
+	}
 }

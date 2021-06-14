@@ -1,4 +1,3 @@
 {
-  "plugins": [
-      ["../../../src", { "removeDebugger": false }]]
+	"plugins": [["../../../index", { "removeDebugger": false }]]
 }
